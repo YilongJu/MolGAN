@@ -166,7 +166,7 @@ class Trainer:
                         print("early stop!")
                         early_stop = True
 
-                if epoch < epochs or early_stop:
+                if epoch < epochs and (not early_stop):
                     last_epoch_start_time = time.time()
                     pr = ProgressBar(80, steps)
                     for step in range(steps):
