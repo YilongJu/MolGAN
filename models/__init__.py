@@ -24,8 +24,7 @@ def decoder_adj(inputs, units, vertexes, edges, nodes, training, dropout_rate=0.
     output = multi_dense_layers(inputs, units, activation=tf.nn.tanh, dropout_rate=dropout_rate, training=training)
 
     with tf.variable_scope('edges_logits'):
-        edges_logits = tf.reshape(tf.layers.dense(inputs=output, units=edges * vertexes * vertexes,
-                                                  activation=None), (-1, edges, vertexes, vertexes))
+        edges_logits = tf.reshape(tf.layers.dense(inputs=output, units=edges * vertexes * vertexes, activation=None), (-1, edges, vertexes, vertexes))
         edges_logits = tf.transpose((edges_logits + tf.matrix_transpose(edges_logits)) / 2, (0, 2, 3, 1))
         edges_logits = tf.layers.dropout(edges_logits, dropout_rate, training=training)
 

@@ -9,6 +9,9 @@ from rdkit.Chem import Draw
 
 from utils.molecular_metrics import MolecularMetrics
 
+import tensorflow as tf
+from collections import OrderedDict
+
 
 def mols2grid_image(mols, molsPerRow):
     mols = [e if e is not None else Chem.RWMol() for e in mols]
@@ -93,3 +96,131 @@ def all_scores(mols, data, norm=False, reconstruction=False):
           'novel score': MolecularMetrics.novel_total_score(mols, data) * 100}
 
     return m0, m1
+
+
+_graph_replace = tf.contrib.graph_editor.graph_replace
+def remove_original_op_attributes(graph):
+    """Remove _original_op attribute from all operations in a graph."""
+    for op in graph.get_operations():
+        op._original_op = None
+
+def graph_replace(*args, **kwargs):
+    """Monkey patch graph_replace so that it works with TF 1.0"""
+    remove_original_op_attributes(tf.get_default_graph())
+    return _graph_replace(*args, **kwargs)
+
+
+def extract_update_dict(update_ops):
+    """Extract variables and their new values from Assign and AssignAdd ops.
+
+    Args:
+        update_ops: list of Assign and AssignAdd ops, typically computed using Keras' opt.get_updates()
+
+    Returns:
+        dict mapping from variable values to their updated value
+    """
+    name_to_var = {v.name: v for v in tf.global_variables()}
+    updates = OrderedDict()
+
+    print(f"update_ops: {update_ops}")
+
+    for update in update_ops:
+        # print(f"\nupdate: {update}\n")
+        try:
+            print(f"\nupdate.name {update.name}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nname_to_var {name_to_var}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nname_to_var[update.name] {name_to_var[update.name]}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nupdate.op {update.op}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nupdate.op_def {update.op_def}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nupdate.type {update.type}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nupdate.outputs {update.outputs}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nupdate.ops {update.ops}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nupdate.__dict__ {update.__dict__}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nupdate.grad {update[0]}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nupdate.vars {update[1]}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nupdate.inputs {update.inputs}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nupdate.inputs() {update.inputs()}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nupdate.inputs._inputs {update.inputs._inputs}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nupdate.inputs {update.inputs[0]}\n")
+        except:
+            pass
+
+        try:
+            print(f"\nupdate.inputs {update.inputs[1]}\n")
+        except:
+            pass
+
+        # var_name = update.op.inputs[0].name
+        # var = name_to_var[var_name]
+        # value = update.op.inputs[1]
+        # print(f"update.op.type: {update.op.type}")
+        # if update.op.type in ['AssignVariableOp', 'Assign']:
+            # updates[var.value()] = value
+
+        var_name = update.inputs[0].name
+        var = name_to_var[var_name]
+        value = update.inputs[1]
+        print(f"update.type: {update.type}")
+        if update.type in ['AssignVariableOp', 'Assign']:
+            updates[var.value()] = value
+        elif update.type in ['AssignAddVariableOp', 'AssignAdd']:
+            updates[var.value()] = var + value
+        else:
+            raise ValueError("Update op type (%s) must be of type Assign or AssignAdd"%update.type)
+    return updates

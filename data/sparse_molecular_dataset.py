@@ -291,8 +291,11 @@ if __name__ == '__main__':
     data = SparseMolecularDataset()
     # data.generate('gdb9.sdf', filters=lambda x: x.GetNumAtoms() <= 9)
     # data.save('gdb9_9nodes.sparsedataset')
-    data.generate('qm9_5k.smi', filters=lambda x: x.GetNumAtoms() <= 9)
-    data.save('qm9_5k.sparsedataset')
+    # data.generate('qm9_5k.smi', filters=lambda x: x.GetNumAtoms() <= 9)
+    # data.save('qm9_5k.sparsedataset')
+
+    data.generate('GDB17_50000000.smi', filters=lambda x: x.GetNumAtoms() <= 200, size=10000)
+    data.save('GDB17_10000.sparsedataset')
 
     # data = SparseMolecularDataset()
     # data.generate('data/qm9_5k.smi', validation=0.00021, test=0.00021)  # , filters=lambda x: x.GetNumAtoms() <= 9)

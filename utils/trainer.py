@@ -9,6 +9,8 @@ from utils.progress_bar import ProgressBar
 from collections import defaultdict
 import pprint
 
+log_filename = "log.txt"
+
 
 class Trainer:
 
@@ -55,9 +57,7 @@ class Trainer:
 
             if _train_step is None:
                 def _train_step(step, steps, epoch, epochs, min_epochs, model, optimizer, batch_dim):
-                    return self.session.run(train_fetch_dict(step, steps, epoch, epochs, min_epochs, model, optimizer),
-                                            feed_dict=train_feed_dict(step, steps, epoch, epochs, min_epochs, model,
-                                                                      optimizer, batch_dim))
+                    return self.session.run(train_fetch_dict(step, steps, epoch, epochs, min_epochs, model, optimizer), feed_dict=train_feed_dict(step, steps, epoch, epochs, min_epochs, model, optimizer, batch_dim))
 
             if _eval_step is None:
                 def _eval_step(epoch, epochs, min_epochs, model, optimizer, batch_dim, eval_batch, start_time,
@@ -156,8 +156,7 @@ class Trainer:
                     output = defaultdict(list)
 
                     for i in range(test_batch):
-                        for k, v in self.session.run(test_fetch_dict(model, optimizer),
-                                                     feed_dict=test_feed_dict(model, optimizer, batch_dim)).items():
+                        for k, v in self.session.run(test_fetch_dict(model, optimizer), feed_dict=test_feed_dict(model, optimizer, batch_dim)).items():
                             output[k].append(v)
                         pr.update(i + 1)
 
@@ -172,6 +171,9 @@ class Trainer:
 
                 p = pprint.PrettyPrinter(indent=1, width=80)
                 self.log('Test --> {}'.format(p.pformat(output)))
+
+                with open(log_filename, 'a') as f:
+                    f.write('Test --> {}'.format(p.pformat(output)))
 
                 for k in output:
                     self.print['Test ' + k].append(output[k])

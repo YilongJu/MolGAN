@@ -9,10 +9,9 @@ class GraphGANModel(object):
 
     def __init__(self, vertexes, edges, nodes, embedding_dim, decoder_units, discriminator_units,
                  decoder, discriminator, soft_gumbel_softmax=False, hard_gumbel_softmax=False,
-                 batch_discriminator=True):
+                 batch_discriminator=True, unrolling_steps=1):
         self.vertexes, self.edges, self.nodes, self.embedding_dim, self.decoder_units, self.discriminator_units, \
-        self.decoder, self.discriminator, self.batch_discriminator = vertexes, edges, nodes, embedding_dim, decoder_units, \
-                                                                     discriminator_units, decoder, discriminator, batch_discriminator
+        self.decoder, self.discriminator, self.batch_discriminator, self.unrolling_steps = vertexes, edges, nodes, embedding_dim, decoder_units, discriminator_units, decoder, discriminator, batch_discriminator, unrolling_steps
 
         self.training = tf.placeholder_with_default(False, shape=())
         self.dropout_rate = tf.placeholder_with_default(0., shape=())
