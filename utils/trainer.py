@@ -175,6 +175,10 @@ class Trainer:
 
                     self.log(date=False)
 
+                if early_stop:
+                    print(f">>>> early stop at {epoch}! <<<<")
+                    break
+
 
 
             """

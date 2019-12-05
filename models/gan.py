@@ -57,10 +57,15 @@ class GraphGANModel(object):
                                      default=lambda: self.nodes_softmax,
                                      exclusive=True)
 
+        noise_sigma = 0.2
+        def Adding_Gaussian_Noise(input, noise_sigma=0.2):
+            noise = tf.random_normal(shape=tf.shape(input), mean=0.0, stddev=noise_sigma, dtype=tf.float32)
+            return input + noise
+
         with tf.name_scope('D_x_real'):
-            self.logits_real, self.features_real = self.D_x((self.adjacency_tensor, None, self.node_tensor), units=discriminator_units)
+            self.logits_real, self.features_real = self.D_x((Adding_Gaussian_Noise(self.adjacency_tensor, noise_sigma=noise_sigma), None, Adding_Gaussian_Noise(self.node_tensor, noise_sigma=noise_sigma)), units=discriminator_units)
         with tf.name_scope('D_x_fake'):
-            self.logits_fake, self.features_fake = self.D_x((self.edges_hat, None, self.nodes_hat), units=discriminator_units)
+            self.logits_fake, self.features_fake = self.D_x((Adding_Gaussian_Noise(self.edges_hat, noise_sigma=noise_sigma), None, Adding_Gaussian_Noise(self.nodes_hat, noise_sigma=noise_sigma)), units=discriminator_units)
 
         with tf.name_scope('V_x_real'):
             self.value_logits_real = self.V_x((self.adjacency_tensor, None, self.node_tensor), units=discriminator_units)
