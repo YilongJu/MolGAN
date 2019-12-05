@@ -1,5 +1,6 @@
 import tensorflow as tf
-
+# import tensorflow.compat.v1 as tf
+# tf.disable_v2_behavior()
 from utils.sparse_molecular_dataset import SparseMolecularDataset
 from utils.trainer import Trainer
 from utils.trainer import log_filename
@@ -24,7 +25,7 @@ n_critic = 5
 metric = "validity,unique,novelty,logp"
 n_samples = 5000 # 5000
 z_dim = 32
-epochs = 1 # 10
+epochs = 5 # 10
 save_every = 1
 decoder_units = (128, 256, 512)
 discriminator_units = ((64, 32), 128, (128,))
@@ -32,11 +33,11 @@ seed = 0
 
 skip_training = False
 
-def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=False, unrolling_steps=1):
+def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=False, unrolling_steps=1, latent_opt=False):
 
     steps = (len(data) // batch_dim)
     np.random.seed(seed)
-    directory = f'{data_name}_bd{batch_dim}_la{la}_do{dropout}_nc{n_critic}_me{metric}_ns{n_samples}_zd{z_dim}_epc{epochs}_se{save_every}_gu{repr(decoder_units)}_du{repr(discriminator_units)}_npseed{seed}_ur{unrolling_steps}'
+    directory = f'{data_name}_bd{batch_dim}_la{la}_do{dropout}_nc{n_critic}_me{metric}_ns{n_samples}_zd{z_dim}_epc{epochs}_se{save_every}_gu{repr(decoder_units)}_du{repr(discriminator_units)}_npseed{seed}_ur{unrolling_steps}_lo{latent_opt}'
 
     print(f"\n{'=' * 20}\nCurrent setting: {directory}")
 
@@ -46,12 +47,15 @@ def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_sa
     def train_fetch_dict(i, steps, epoch, epochs, min_epochs, model, optimizer):
         a = [optimizer.train_step_G] if i % n_critic == 0 else [optimizer.train_step_D]
         b = [optimizer.train_step_V] if i % n_critic == 0 and la < 1 else []
+        # return a + b, optimizer.printupdates, optimizer.grads_and_vars
         return a + b
 
+    def train_feed_dict(i, steps, epoch, epochs, min_epochs, model, optimizer, batch_dim, update_G_D=True):
 
-    def train_feed_dict(i, steps, epoch, epochs, min_epochs, model, optimizer, batch_dim):
         mols, _, _, a, x, _, _, _, _ = data.next_train_batch(batch_dim)
         embeddings = model.sample_z(batch_dim)
+        # embeddings = model.z
+        # assign_op = model.embeddings_LO.assign(embeddings)
 
         if la < 1:
 
@@ -72,7 +76,8 @@ def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_sa
                              model.rewardF: rewardF,
                              model.training: True,
                              model.dropout_rate: dropout,
-                             optimizer.la: la if epoch > 0 else 1.0}
+                             optimizer.la: la if epoch > 0 else 1.0,
+                             model.input_len: batch_dim}
 
             else:
                 feed_dict = {model.edges_labels: a,
@@ -80,14 +85,16 @@ def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_sa
                              model.embeddings: embeddings,
                              model.training: True,
                              model.dropout_rate: dropout,
-                             optimizer.la: la if epoch > 0 else 1.0}
+                             optimizer.la: la if epoch > 0 else 1.0,
+                             model.input_len: batch_dim}
         else:
             feed_dict = {model.edges_labels: a,
                          model.nodes_labels: x,
                          model.embeddings: embeddings,
                          model.training: True,
                          model.dropout_rate: dropout,
-                         optimizer.la: 1.0}
+                         optimizer.la: 1.0,
+                         model.input_len: batch_dim}
 
         return feed_dict
 
@@ -99,17 +106,22 @@ def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_sa
 
 
     def eval_feed_dict(i, epochs, min_epochs, model, optimizer, batch_dim):
-        mols, _, _, a, x, _, _, _, _ = data.next_validation_batch()
+        mols, _, _, a, x, _, _, _, _ = data.next_validation_batch(batch_size=batch_dim)
         embeddings = model.sample_z(a.shape[0])
+        # embeddings = model.sample_z(batch_dim)
+        print(f"eval_fed_eembbeding_dim: {embeddings.shape}")
+        print(">> 1 <<")
 
         rewardR = reward(mols)
 
         n, e = session.run([model.nodes_gumbel_argmax, model.edges_gumbel_argmax],
                            feed_dict={model.training: False, model.embeddings: embeddings})
+        print(">> 2 <<")
         n, e = np.argmax(n, axis=-1), np.argmax(e, axis=-1)
         mols = [data.matrices2mol(n_, e_, strict=True) for n_, e_ in zip(n, e)]
 
         rewardF = reward(mols)
+        print(">> 3 <<")
 
         feed_dict = {model.edges_labels: a,
                      model.nodes_labels: x,
@@ -117,6 +129,7 @@ def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_sa
                      model.rewardR: rewardR,
                      model.rewardF: rewardF,
                      model.training: False}
+        print(">> 4 <<")
         return feed_dict
 
 
@@ -127,8 +140,10 @@ def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_sa
 
 
     def test_feed_dict(model, optimizer, batch_dim):
-        mols, _, _, a, x, _, _, _, _ = data.next_test_batch()
+        mols, _, _, a, x, _, _, _, _ = data.next_test_batch(batch_size=batch_dim)
         embeddings = model.sample_z(a.shape[0], seed=seed)
+        # embeddings = model.sample_z(batch_dim, seed=seed)
+
 
         rewardR = reward(mols)
 
@@ -136,8 +151,8 @@ def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_sa
                            feed_dict={model.training: False, model.embeddings: embeddings})
         n, e = np.argmax(n, axis=-1), np.argmax(e, axis=-1)
         mols = [data.matrices2mol(n_, e_, strict=True) for n_, e_ in zip(n, e)]
-        print("MOLS!!!!!!",mols)
-        print(f"\nlen(mols): {len(mols)}")
+        #print("MOLS!!!!!!",mols)
+        #print(f"\nlen(mols): {len(mols)}")
         img_per_row = 22
         mols_short = mols[:img_per_row**2]
         img = mols2grid_image(mols_short, img_per_row)
@@ -272,7 +287,8 @@ if __name__ == "__main__":
     decoder_units = (128, 256, 512)
     discriminator_units = ((128, 64), 128, (128, 64))
     seed = 0
-    unrolling_steps = 5
+    unrolling_steps = 1
+    latent_opt = True
 
     skip_training = False
 
@@ -291,4 +307,4 @@ if __name__ == "__main__":
     #             for discriminator_units in discriminator_units_list:
     #                 Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=skip_training)
 
-    Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=skip_training, unrolling_steps=unrolling_steps)
+    Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=skip_training, unrolling_steps=unrolling_steps, latent_opt=latent_opt)

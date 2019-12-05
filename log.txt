@@ -487,3 +487,238 @@ Test --> {'NP score': 0.9172942721774843,
  'novel score': 100.0,
  'unique score': 3.5829741379310347,
  'valid score': 74.23999905586243}
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur5
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loTrue
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loTrue
+Test --> {'NP score': 0.8474018552327026,
+ 'QED score': 0.5971409464027048,
+ 'SA score': 0.5860741407926983,
+ 'diversity score': 0.747837427919456,
+ 'drugcandidate score': 0.3160941474014025,
+ 'la': 1.0,
+ 'logP score': 0.48843082668087595,
+ 'loss D': -118.716034,
+ 'loss G': 67.46237,
+ 'loss RL': -0.23597541,
+ 'loss V': 0.0017632276,
+ 'novel score': 100.0,
+ 'unique score': 8.333333333333332,
+ 'valid score': 37.5}

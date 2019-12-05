@@ -10,9 +10,7 @@ class GraphGANOptimizer(object):
         with tf.name_scope('losses'):
             eps = tf.random_uniform(tf.shape(model.logits_real)[:1], dtype=model.logits_real.dtype)
 
-            x_int0 = model.adjacency_tensor * tf.expand_dims(tf.expand_dims(tf.expand_dims(eps, -1), -1),
-                                                             -1) + model.edges_softmax * (
-                             1 - tf.expand_dims(tf.expand_dims(tf.expand_dims(eps, -1), -1), -1))
+            x_int0 = model.adjacency_tensor * tf.expand_dims(tf.expand_dims(tf.expand_dims(eps, -1), -1), 1 - tf.expand_dims(tf.expand_dims(tf.expand_dims(eps, -1), -1), -1))
             x_int1 = model.node_tensor * tf.expand_dims(tf.expand_dims(eps, -1), -1) + model.nodes_softmax * (
                     1 - tf.expand_dims(tf.expand_dims(eps, -1), -1))
 
@@ -42,11 +40,20 @@ class GraphGANOptimizer(object):
 
             print(f"model.unrolling_steps: {model.unrolling_steps}")
 
+            self.train_step_z = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(loss=self.loss_D + 10 * self.grad_penalty, var_list=tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope="input_LO"))
+
             # Unroll optimization of the discrimiantor
             if model.unrolling_steps > 1:
                 grads_and_vars = self.train_ops_D.compute_gradients(self.loss_D + 10 * self.grad_penalty, var_list=tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope='discriminator'))
-                print(f"grads_and_vars: {grads_and_vars}")
-                updates = [self.train_ops_D.apply_gradients(grads_and_vars)]
+
+                #print(f"grads_and_vars: {grads_and_vars}")
+
+                # updates = self.train_ops_D.apply_gradients_fuck(grads_and_vars)
+                updates = self.train_ops_D.apply_gradients(grads_and_vars)
+
+                self.grads_and_vars = grads_and_vars
+                self.printupdates = updates
+                print("hahahahahaha",updates)
                 # Get dictionary mapping from variables to their update value after one optimization step
                 update_dict = extract_update_dict(updates)
                 cur_update_dict = update_dict
@@ -56,6 +63,7 @@ class GraphGANOptimizer(object):
                     cur_update_dict = graph_replace(update_dict, cur_update_dict)
                 # Final unrolled loss uses the parameters at the last time step
                 self.unrolled_loss = graph_replace(self.loss_D, cur_update_dict)
+                # self.unrolled_loss = -self.loss_G
             else:
                 self.unrolled_loss = -self.loss_G
 

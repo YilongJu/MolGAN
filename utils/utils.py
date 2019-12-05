@@ -125,86 +125,86 @@ def extract_update_dict(update_ops):
     print(f"update_ops: {update_ops}")
 
     for update in update_ops:
-        # print(f"\nupdate: {update}\n")
-        try:
-            print(f"\nupdate.name {update.name}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nname_to_var {name_to_var}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nname_to_var[update.name] {name_to_var[update.name]}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nupdate.op {update.op}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nupdate.op_def {update.op_def}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nupdate.type {update.type}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nupdate.outputs {update.outputs}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nupdate.ops {update.ops}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nupdate.__dict__ {update.__dict__}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nupdate.grad {update[0]}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nupdate.vars {update[1]}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nupdate.inputs {update.inputs}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nupdate.inputs() {update.inputs()}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nupdate.inputs._inputs {update.inputs._inputs}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nupdate.inputs {update.inputs[0]}\n")
-        except:
-            pass
-
-        try:
-            print(f"\nupdate.inputs {update.inputs[1]}\n")
-        except:
-            pass
+    #     # print(f"\nupdate: {update}\n")
+    #     try:
+    #         print(f"\nupdate.name {update.name}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nname_to_var {name_to_var}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nname_to_var[update.name] {name_to_var[update.name]}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nupdate.op {update.op}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nupdate.op_def {update.op_def}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nupdate.type {update.type}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nupdate.outputs {update.outputs}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nupdate.ops {update.ops}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nupdate.__dict__ {update.__dict__}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nupdate.grad {update[0]}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nupdate.vars {update[1]}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nupdate.inputs {update.inputs}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nupdate.inputs() {update.inputs()}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nupdate.inputs._inputs {update.inputs._inputs}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nupdate.inputs {update.inputs[0]}\n")
+    #     except:
+    #         pass
+    #
+    #     try:
+    #         print(f"\nupdate.inputs {update.inputs[1]}\n")
+    #     except:
+    #         pass
 
         # var_name = update.op.inputs[0].name
         # var = name_to_var[var_name]

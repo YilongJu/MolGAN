@@ -22,14 +22,25 @@ class GraphGANModel(object):
         self.edges_labels = tf.placeholder(dtype=tf.int64, shape=(None, vertexes, vertexes))
         self.nodes_labels = tf.placeholder(dtype=tf.int64, shape=(None, vertexes))
         self.embeddings = tf.placeholder(dtype=tf.float32, shape=(None, embedding_dim))
+        self.input_len = tf.placeholder(dtype=tf.int64, shape=[])
+        self.is_training = True
 
         self.rewardR = tf.placeholder(dtype=tf.float32, shape=(None, 1))
         self.rewardF = tf.placeholder(dtype=tf.float32, shape=(None, 1))
         self.adjacency_tensor = tf.one_hot(self.edges_labels, depth=edges, dtype=tf.float32)
         self.node_tensor = tf.one_hot(self.nodes_labels, depth=nodes, dtype=tf.float32)
 
+        print(f"self.is_training: {self.is_training}")
+
+        with tf.variable_scope("input_LO"):
+            # self.embeddings_LO = tf.Variable(tf.zeros(shape=(tf.shape(self.embeddings)[0], embedding_dim), dtype=tf.float32))
+            if self.is_training:
+                self.embeddings_LO = tf.Variable(tf.zeros(shape=[32, embedding_dim]), name="latent_z")
+            else:
+                self.embeddings_LO = self.embeddings
+
         with tf.variable_scope('generator'):
-            self.edges_logits, self.nodes_logits = self.decoder(self.embeddings, decoder_units, vertexes, edges, nodes, training=self.training, dropout_rate=self.dropout_rate)
+            self.edges_logits, self.nodes_logits = self.decoder(self.embeddings_LO, decoder_units, vertexes, edges, nodes, training=self.training, dropout_rate=self.dropout_rate)
 
         with tf.name_scope('outputs'):
             (self.edges_softmax, self.nodes_softmax), \
