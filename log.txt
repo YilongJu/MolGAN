@@ -722,3 +722,78 @@ Test --> {'NP score': 0.8474018552327026,
  'novel score': 100.0,
  'unique score': 8.333333333333332,
  'valid score': 37.5}
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loTrue
+Test --> {'NP score': nan,
+ 'QED score': nan,
+ 'SA score': nan,
+ 'diversity score': nan,
+ 'drugcandidate score': 0.11783951472333937,
+ 'la': 1.0,
+ 'logP score': nan,
+ 'loss D': -158.33636,
+ 'loss G': 79.64833,
+ 'loss RL': -0.0073773377,
+ 'loss V': 0.0020073028,
+ 'novel score': nan,
+ 'unique score': 0,
+ 'valid score': 0.0}
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loTrue
+Test --> {'NP score': nan,
+ 'QED score': nan,
+ 'SA score': nan,
+ 'diversity score': nan,
+ 'drugcandidate score': 0.11783951472333937,
+ 'la': 1.0,
+ 'logP score': nan,
+ 'loss D': -156.99103,
+ 'loss G': 79.64833,
+ 'loss RL': -0.0073773377,
+ 'loss V': 0.0021280907,
+ 'novel score': nan,
+ 'unique score': 0,
+ 'valid score': 0.0}
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loTrue
+
+
+qm9_5k_bd64_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loTrue
+
+
+qm9_5k_bd64_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loTrue
+Test --> {'NP score': 1.0,
+ 'QED score': 0.5719270675309553,
+ 'SA score': 0.47941985321129316,
+ 'diversity score': nan,
+ 'drugcandidate score': 0.1335274974914482,
+ 'la': 1.0,
+ 'logP score': 0.498400580433991,
+ 'loss D': -104.29683,
+ 'loss G': 59.988857,
+ 'loss RL': -0.023000216,
+ 'loss V': 0.006594777,
+ 'novel score': 100.0,
+ 'unique score': 50.0,
+ 'valid score': 3.125}
+
+qm9_5k_bd64_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loTrue_lr0.005
+Test --> {'NP score': 0.75,
+ 'QED score': 0.4074019429762492,
+ 'SA score': nan,
+ 'diversity score': 1.0,
+ 'drugcandidate score': 0.4974368692809525,
+ 'la': 1.0,
+ 'logP score': 0.9610510451393528,
+ 'loss D': -153.7114,
+ 'loss G': 82.46295,
+ 'loss RL': -0.40173775,
+ 'loss V': 0.0019239697,
+ 'novel score': 100.0,
+ 'unique score': 1.5625,
+ 'valid score': 100.0}
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loFalse_lr0.0001
+
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loFalse_lr0.0001

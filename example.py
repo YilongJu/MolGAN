@@ -12,32 +12,34 @@ from models import encoder_rgcn, decoder_adj, decoder_dot, decoder_rnn
 from optimizers.gan import GraphGANOptimizer
 import time
 
-data = SparseMolecularDataset()
-# data.load('data/gdb9_9nodes.sparsedataset')
-data.load('data/qm9_5k.sparsedataset')
-data_name = "qm9_5k"
 
-batch_dim = 32
-la = 0.3
-dropout = 0
-n_critic = 5
-# metric = 'validity,sas'
-metric = "validity,unique,novelty,logp"
-n_samples = 5000 # 5000
-z_dim = 32
-epochs = 5 # 10
-save_every = 1
-decoder_units = (128, 256, 512)
-discriminator_units = ((64, 32), 128, (128,))
-seed = 0
 
-skip_training = False
+# data = SparseMolecularDataset()
+# # data.load('data/gdb9_9nodes.sparsedataset')
+# data.load('data/qm9_5k.sparsedataset')
+# data_name = "qm9_5k"
+#
+# batch_dim = 32
+# la = 0.3
+# dropout = 0
+# n_critic = 5
+# # metric = 'validity,sas'
+# metric = "validity,unique,novelty,logp"
+# n_samples = 5000 # 5000
+# z_dim = 32
+# epochs = 5 # 10
+# save_every = 1
+# decoder_units = (128, 256, 512)
+# discriminator_units = ((64, 32), 128, (128,))
+# seed = 0
+#
+# skip_training = True
 
-def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=False, unrolling_steps=1, latent_opt=False):
+def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=False, unrolling_steps=1, latent_opt=False, learning_rate=1e-3):
 
     steps = (len(data) // batch_dim)
     np.random.seed(seed)
-    directory = f'{data_name}_bd{batch_dim}_la{la}_do{dropout}_nc{n_critic}_me{metric}_ns{n_samples}_zd{z_dim}_epc{epochs}_se{save_every}_gu{repr(decoder_units)}_du{repr(discriminator_units)}_npseed{seed}_ur{unrolling_steps}_lo{latent_opt}'
+    directory = f'{data_name}_bd{batch_dim}_la{la}_do{dropout}_nc{n_critic}_me{metric}_ns{n_samples}_zd{z_dim}_epc{epochs}_se{save_every}_gu{repr(decoder_units)}_du{repr(discriminator_units)}_npseed{seed}_ur{unrolling_steps}_lo{latent_opt}_lr{learning_rate}'
 
     print(f"\n{'=' * 20}\nCurrent setting: {directory}")
 
@@ -236,10 +238,12 @@ def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_sa
                           soft_gumbel_softmax=False,
                           hard_gumbel_softmax=False,
                           batch_discriminator=False,
-                          unrolling_steps=unrolling_steps)
+                          unrolling_steps=unrolling_steps,
+                          batch_dim=batch_dim,
+                          latent_opt=latent_opt)
 
     # optimizer
-    optimizer = GraphGANOptimizer(model, learning_rate=1e-3, feature_matching=False)
+    optimizer = GraphGANOptimizer(model, learning_rate=learning_rate, feature_matching=False)
 
     # session
     session = tf.Session()
@@ -288,7 +292,8 @@ if __name__ == "__main__":
     discriminator_units = ((128, 64), 128, (128, 64))
     seed = 0
     unrolling_steps = 1
-    latent_opt = True
+    latent_opt = False
+    learning_rate = 1e-4
 
     skip_training = False
 
@@ -307,4 +312,4 @@ if __name__ == "__main__":
     #             for discriminator_units in discriminator_units_list:
     #                 Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=skip_training)
 
-    Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=skip_training, unrolling_steps=unrolling_steps, latent_opt=latent_opt)
+    Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=skip_training, unrolling_steps=unrolling_steps, latent_opt=latent_opt, learning_rate=learning_rate)

@@ -58,6 +58,8 @@ class Trainer:
             if _train_step is None:
                 def _train_step(step, steps, epoch, epochs, min_epochs, model, optimizer, batch_dim):
                     model.is_training = True
+                    if not model.latent_opt:
+                        model.is_training = False
                     print(f"_train_step, batch_dim: {batch_dim}, is_training: {model.is_training}")
                     embeddings = model.sample_z(batch_dim)
                     # embeddings = model.z
@@ -66,7 +68,8 @@ class Trainer:
 
                     # a, b, c, _ = self.session.run([train_fetch_dict(step, steps, epoch, epochs, min_epochs, model, optimizer), assign_op], feed_dict=train_feed_dict(step, steps, epoch, epochs, min_epochs, model, optimizer, batch_dim))
                     # a, _ = self.session.run([train_fetch_dict(step, steps, epoch, epochs, min_epochs, model, optimizer), assign_op], feed_dict=train_feed_dict(step, steps, epoch, epochs, min_epochs, model, optimizer, batch_dim))
-                    z_up = self.session.run(optimizer.train_step_z, feed_dict=train_feed_dict(step, steps, epoch, epochs, min_epochs, model, optimizer, batch_dim))
+                    if model.latent_opt:
+                        z_up = self.session.run(optimizer.train_step_z, feed_dict=train_feed_dict(step, steps, epoch, epochs, min_epochs, model, optimizer, batch_dim))
                     z_updated_val = self.session.run(model.embeddings_LO)
                     # print(f"embeddings updated: {z_updated_val}")
 
@@ -106,8 +109,8 @@ class Trainer:
                         output = {k: np.mean(v) for k, v in output.items()}
                     else:
                         self.log(">>> 1b <<<")
-                        print(eval_fetch_dict(epoch, epochs, min_epochs, model, optimizer))
-                        print(eval_feed_dict(epoch, epochs, min_epochs, model, optimizer, batch_dim))
+                        # print(eval_fetch_dict(epoch, epochs, min_epochs, model, optimizer))
+                        # print(eval_feed_dict(epoch, epochs, min_epochs, model, optimizer, batch_dim))
                         output = self.session.run(eval_fetch_dict(epoch, epochs, min_epochs, model, optimizer), feed_dict=eval_feed_dict(epoch, epochs, min_epochs, model, optimizer, batch_dim))
                         self.log(">>> 1b2 <<<")
 
@@ -187,7 +190,7 @@ class Trainer:
             def _test_step(model, optimizer, batch_dim, test_batch, start_time, _test_update):
                 model.is_training = False
                 print(f"_test_step, batch_dim: {batch_dim}, is_training: {model.is_training}")
-                self.load(directory)
+                self.load(directory, 30)
                 from_start = timedelta(seconds=int((time.time() - start_time)))
                 self.log('End of training ({} epochs) in {}'.format(epochs, from_start))
 

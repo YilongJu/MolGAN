@@ -9,9 +9,9 @@ class GraphGANModel(object):
 
     def __init__(self, vertexes, edges, nodes, embedding_dim, decoder_units, discriminator_units,
                  decoder, discriminator, soft_gumbel_softmax=False, hard_gumbel_softmax=False,
-                 batch_discriminator=True, unrolling_steps=1):
+                 batch_discriminator=True, unrolling_steps=1, batch_dim=32, latent_opt=False):
         self.vertexes, self.edges, self.nodes, self.embedding_dim, self.decoder_units, self.discriminator_units, \
-        self.decoder, self.discriminator, self.batch_discriminator, self.unrolling_steps = vertexes, edges, nodes, embedding_dim, decoder_units, discriminator_units, decoder, discriminator, batch_discriminator, unrolling_steps
+        self.decoder, self.discriminator, self.batch_discriminator, self.unrolling_steps, self.latent_opt = vertexes, edges, nodes, embedding_dim, decoder_units, discriminator_units, decoder, discriminator, batch_discriminator, unrolling_steps, latent_opt
 
         self.training = tf.placeholder_with_default(False, shape=())
         self.dropout_rate = tf.placeholder_with_default(0., shape=())
@@ -35,7 +35,7 @@ class GraphGANModel(object):
         with tf.variable_scope("input_LO"):
             # self.embeddings_LO = tf.Variable(tf.zeros(shape=(tf.shape(self.embeddings)[0], embedding_dim), dtype=tf.float32))
             if self.is_training:
-                self.embeddings_LO = tf.Variable(tf.zeros(shape=[32, embedding_dim]), name="latent_z")
+                self.embeddings_LO = tf.Variable(tf.zeros(shape=[batch_dim, embedding_dim]), name="latent_z")
             else:
                 self.embeddings_LO = self.embeddings
 
