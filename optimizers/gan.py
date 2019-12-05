@@ -10,9 +10,8 @@ class GraphGANOptimizer(object):
         with tf.name_scope('losses'):
             eps = tf.random_uniform(tf.shape(model.logits_real)[:1], dtype=model.logits_real.dtype)
 
-            x_int0 = model.adjacency_tensor * tf.expand_dims(tf.expand_dims(tf.expand_dims(eps, -1), -1), 1 - tf.expand_dims(tf.expand_dims(tf.expand_dims(eps, -1), -1), -1))
-            x_int1 = model.node_tensor * tf.expand_dims(tf.expand_dims(eps, -1), -1) + model.nodes_softmax * (
-                    1 - tf.expand_dims(tf.expand_dims(eps, -1), -1))
+            x_int0 = model.adjacency_tensor * tf.expand_dims(tf.expand_dims(tf.expand_dims(eps, -1), -1), -1) + model.edges_softmax * (1 - tf.expand_dims(tf.expand_dims(tf.expand_dims(eps, -1), -1), -1))
+            x_int1 = model.node_tensor * tf.expand_dims(tf.expand_dims(eps, -1), -1) + model.nodes_softmax * (1 - tf.expand_dims(tf.expand_dims(eps, -1), -1))
 
             grad0, grad1 = tf.gradients(model.D_x((x_int0, None, x_int1), model.discriminator_units), (x_int0, x_int1))
 

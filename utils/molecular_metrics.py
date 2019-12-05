@@ -4,6 +4,9 @@ from rdkit import DataStructs
 from rdkit import Chem
 from rdkit.Chem import QED
 from rdkit.Chem import Crippen
+from rdkit import RDLogger
+lg = RDLogger.logger()
+lg.setLevel(RDLogger.CRITICAL)
 
 import math
 import numpy as np

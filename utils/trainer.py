@@ -135,6 +135,7 @@ class Trainer:
             last_epoch_start_time = time.time()
 
             for epoch in range(epochs + 1):
+                early_stop = False
 
                 if not (skip_first_eval and epoch == 0):
 
@@ -159,9 +160,10 @@ class Trainer:
                     print(f"result['novel score']: {result['novel score']}")
 
                     if result['valid score'] > 85 and result['novel score'] > 85 and result['unique score'] > 15:
-                        epoch = epochs
+                        print("early stop!")
+                        early_stop = True
 
-                if epoch < epochs:
+                if epoch < epochs or early_stop:
                     last_epoch_start_time = time.time()
                     pr = ProgressBar(80, steps)
                     for step in range(steps):
