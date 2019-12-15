@@ -136,7 +136,7 @@ def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_sa
         img_per_row = 22
         mols_short = mols[:img_per_row**2]
         img = mols2grid_image(mols_short, img_per_row)
-        img.save(directory + '/mol' + time.strftime("%m%d_%h%m%s") + '.png')
+        img.save(directory + '/mol' + time.strftime("%m%d_%H%M%S") + '.png')
         print("Mols saved.")
         # exit()
 
@@ -278,7 +278,7 @@ if __name__ == "__main__":
     learning_rate = 1e-4
     noise_sigma = 0
 
-    skip_training = False
-    test_epoch = 4
+    skip_training = True
+    test_epoch = 15
 
     Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=skip_training, unrolling_steps=unrolling_steps, latent_opt=latent_opt, learning_rate=learning_rate, noise_sigma=noise_sigma, test_epoch=test_epoch)

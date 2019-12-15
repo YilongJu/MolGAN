@@ -879,3 +879,65 @@ qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128,
 
 
 qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loFalse_lr0.0001_ns0
+Test --> {'NP score': nan,
+ 'QED score': nan,
+ 'SA score': nan,
+ 'diversity score': nan,
+ 'drugcandidate score': 0.11783951472333937,
+ 'la': 1.0,
+ 'logP score': nan,
+ 'loss D': -24.905815,
+ 'loss G': 12.582501,
+ 'loss RL': -0.057746977,
+ 'loss V': 0.0064152544,
+ 'novel score': nan,
+ 'unique score': 0,
+ 'valid score': 0.0}
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loFalse_lr0.0001_ns0
+Test --> {'NP score': 1.0,
+ 'QED score': 0.4555048956028241,
+ 'SA score': nan,
+ 'diversity score': 0.9339212404805556,
+ 'drugcandidate score': 0.15366706021802629,
+ 'la': 1.0,
+ 'logP score': 0.4852790453961075,
+ 'loss D': -22.251411,
+ 'loss G': 11.412516,
+ 'loss RL': -0.04238239,
+ 'loss V': 0.011320148,
+ 'novel score': 100.0,
+ 'unique score': 100.0,
+ 'valid score': 9.375}
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loFalse_lr0.0001_ns0
+Test --> {'NP score': 1.0,
+ 'QED score': 0.4570014062310513,
+ 'SA score': nan,
+ 'diversity score': 0.7910663620013713,
+ 'drugcandidate score': 0.15366706021802629,
+ 'la': 1.0,
+ 'logP score': 0.41569081741828434,
+ 'loss D': -22.277855,
+ 'loss G': 11.412516,
+ 'loss RL': -0.04238239,
+ 'loss V': 0.035091713,
+ 'novel score': 100.0,
+ 'unique score': 100.0,
+ 'valid score': 9.375}
+
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loFalse_lr0.0001_ns0
+Test --> {'NP score': 0.7498259624928667,
+ 'QED score': 0.40888598877821636,
+ 'SA score': 0.4162557640364091,
+ 'diversity score': 1.0,
+ 'drugcandidate score': 0.5008490631074274,
+ 'la': 1.0,
+ 'logP score': 0.9572848298087842,
+ 'loss D': -40.936752,
+ 'loss G': 20.641855,
+ 'loss RL': -0.41022336,
+ 'loss V': 0.003507353,
+ 'novel score': 100.0,
+ 'unique score': 9.375,
+ 'valid score': 100.0}

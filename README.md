@@ -3,14 +3,22 @@
 
  ## Dependencies
 
- * **python>=3.6**
+ * **python>=3.7**
  * **tensorflow>=1.7.0**: https://tensorflow.org
  * **rdkit**: https://www.rdkit.org
  * **numpy**
  * **scikit-learn**
 
  ## Usage
- Modify hyperparameters in the **main* function of **example.py**, type
+ - Modify hyperparameters in the `main` function of `example.py`
+ - To train:
+    - Set `skip_training` to `True`
+ - To test:
+    - Keep hyperparameters unchanged
+    - Set `skip_training` to `False`
+    - Set `test_epoch` to the epoch used for inference
+ 
+ Then, type
  ```
  python example.py
  ```
