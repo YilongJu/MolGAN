@@ -12,10 +12,10 @@
  ## Usage
  - Modify hyperparameters in the `main` function of `example.py`
  - To train:
-    - Set `skip_training` to `True`
+    - Set `skip_training` to `False`
  - To test:
     - Keep hyperparameters unchanged
-    - Set `skip_training` to `False`
+    - Set `skip_training` to `True`
     - Set `test_epoch` to the epoch used for inference
  
  Then, type
