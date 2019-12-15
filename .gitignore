@@ -165,3 +165,5 @@ qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128,
 qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loFalse_lr0.0001/model_8.ckpt.data-00000-of-00001
 qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loFalse_lr0.0001/model_9.ckpt.data-00000-of-00001
 *.data-00000-of-00001
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loFalse_lr0.0001/checkpoint
+qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128, 64), 128, (128, 64))_npseed0_ur1_loFalse_lr0.0001_ns0/checkpoint

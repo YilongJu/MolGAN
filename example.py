@@ -13,33 +13,11 @@ from optimizers.gan import GraphGANOptimizer
 import time
 
 
-
-# data = SparseMolecularDataset()
-# # data.load('data/gdb9_9nodes.sparsedataset')
-# data.load('data/qm9_5k.sparsedataset')
-# data_name = "qm9_5k"
-#
-# batch_dim = 32
-# la = 0.3
-# dropout = 0
-# n_critic = 5
-# # metric = 'validity,sas'
-# metric = "validity,unique,novelty,logp"
-# n_samples = 5000 # 5000
-# z_dim = 32
-# epochs = 5 # 10
-# save_every = 1
-# decoder_units = (128, 256, 512)
-# discriminator_units = ((64, 32), 128, (128,))
-# seed = 0
-#
-# skip_training = True
-
-def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=False, unrolling_steps=1, latent_opt=False, learning_rate=1e-3):
+def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=False, unrolling_steps=1, latent_opt=False, learning_rate=1e-3, noise_sigma=0.0, test_epoch=0):
 
     steps = (len(data) // batch_dim)
     np.random.seed(seed)
-    directory = f'{data_name}_bd{batch_dim}_la{la}_do{dropout}_nc{n_critic}_me{metric}_ns{n_samples}_zd{z_dim}_epc{epochs}_se{save_every}_gu{repr(decoder_units)}_du{repr(discriminator_units)}_npseed{seed}_ur{unrolling_steps}_lo{latent_opt}_lr{learning_rate}'
+    directory = f'{data_name}_bd{batch_dim}_la{la}_do{dropout}_nc{n_critic}_me{metric}_ns{n_samples}_zd{z_dim}_epc{epochs}_se{save_every}_gu{repr(decoder_units)}_du{repr(discriminator_units)}_npseed{seed}_ur{unrolling_steps}_lo{latent_opt}_lr{learning_rate}_ns{noise_sigma}'
 
     print(f"\n{'=' * 20}\nCurrent setting: {directory}")
 
@@ -240,13 +218,17 @@ def Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_sa
                           batch_discriminator=False,
                           unrolling_steps=unrolling_steps,
                           batch_dim=batch_dim,
-                          latent_opt=latent_opt)
+                          latent_opt=latent_opt,
+                          noise_sigma=noise_sigma,
+                          test_epoch=test_epoch)
 
     # optimizer
     optimizer = GraphGANOptimizer(model, learning_rate=learning_rate, feature_matching=False)
 
     # session
-    session = tf.Session()
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+    session = tf.Session(config=config)
     session.run(tf.global_variables_initializer())
 
     # trainer
@@ -294,22 +276,9 @@ if __name__ == "__main__":
     unrolling_steps = 1
     latent_opt = False
     learning_rate = 1e-4
+    noise_sigma = 0
 
     skip_training = False
+    test_epoch = 4
 
-    # z_dim_list = [32, 128, 64]
-    # dropout_list = [0, 0.25, 0.1]
-    # la_list = [0.25, 0.5, 0.75, 1]
-    # discriminator_units_list = [((64, 32), 128, (128,)), \
-    # ((64, 32), 128, (128, 64)), \
-    # ((128, 64), 128, (128, 64)), \
-    # ((256, 128), 256, (256, 128)) \
-    # ]
-
-    # for z_dim in z_dim_list:
-    #     for dropout in dropout_list:
-    #         for la in la_list:
-    #             for discriminator_units in discriminator_units_list:
-    #                 Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=skip_training)
-
-    Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=skip_training, unrolling_steps=unrolling_steps, latent_opt=latent_opt, learning_rate=learning_rate)
+    Train_MolGAN(data, data_name, batch_dim, la, dropout, n_critic, metric, n_samples, z_dim, epochs, save_every, decoder_units, discriminator_units, seed, skip_training=skip_training, unrolling_steps=unrolling_steps, latent_opt=latent_opt, learning_rate=learning_rate, noise_sigma=noise_sigma, test_epoch=test_epoch)

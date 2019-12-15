@@ -9,9 +9,9 @@ class GraphGANModel(object):
 
     def __init__(self, vertexes, edges, nodes, embedding_dim, decoder_units, discriminator_units,
                  decoder, discriminator, soft_gumbel_softmax=False, hard_gumbel_softmax=False,
-                 batch_discriminator=True, unrolling_steps=1, batch_dim=32, latent_opt=False):
+                 batch_discriminator=True, unrolling_steps=1, batch_dim=32, latent_opt=False, noise_sigma=0.0, test_epoch=0):
         self.vertexes, self.edges, self.nodes, self.embedding_dim, self.decoder_units, self.discriminator_units, \
-        self.decoder, self.discriminator, self.batch_discriminator, self.unrolling_steps, self.latent_opt = vertexes, edges, nodes, embedding_dim, decoder_units, discriminator_units, decoder, discriminator, batch_discriminator, unrolling_steps, latent_opt
+        self.decoder, self.discriminator, self.batch_discriminator, self.unrolling_steps, self.latent_opt, self.noise_sigma, self.test_epoch = vertexes, edges, nodes, embedding_dim, decoder_units, discriminator_units, decoder, discriminator, batch_discriminator, unrolling_steps, latent_opt, noise_sigma, test_epoch
 
         self.training = tf.placeholder_with_default(False, shape=())
         self.dropout_rate = tf.placeholder_with_default(0., shape=())
@@ -57,15 +57,14 @@ class GraphGANModel(object):
                                      default=lambda: self.nodes_softmax,
                                      exclusive=True)
 
-        noise_sigma = 0.2
-        def Adding_Gaussian_Noise(input, noise_sigma=0.2):
+        def Adding_Gaussian_Noise(input, noise_sigma=0.0):
             noise = tf.random_normal(shape=tf.shape(input), mean=0.0, stddev=noise_sigma, dtype=tf.float32)
             return input + noise
 
         with tf.name_scope('D_x_real'):
-            self.logits_real, self.features_real = self.D_x((Adding_Gaussian_Noise(self.adjacency_tensor, noise_sigma=noise_sigma), None, Adding_Gaussian_Noise(self.node_tensor, noise_sigma=noise_sigma)), units=discriminator_units)
+            self.logits_real, self.features_real = self.D_x((Adding_Gaussian_Noise(self.adjacency_tensor, noise_sigma=self.noise_sigma), None, Adding_Gaussian_Noise(self.node_tensor, noise_sigma=self.noise_sigma)), units=discriminator_units)
         with tf.name_scope('D_x_fake'):
-            self.logits_fake, self.features_fake = self.D_x((Adding_Gaussian_Noise(self.edges_hat, noise_sigma=noise_sigma), None, Adding_Gaussian_Noise(self.nodes_hat, noise_sigma=noise_sigma)), units=discriminator_units)
+            self.logits_fake, self.features_fake = self.D_x((Adding_Gaussian_Noise(self.edges_hat, noise_sigma=self.noise_sigma), None, Adding_Gaussian_Noise(self.nodes_hat, noise_sigma=self.noise_sigma)), units=discriminator_units)
 
         with tf.name_scope('V_x_real'):
             self.value_logits_real = self.V_x((self.adjacency_tensor, None, self.node_tensor), units=discriminator_units)

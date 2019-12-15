@@ -138,6 +138,8 @@ class Trainer:
             last_epoch_start_time = time.time()
 
             for epoch in range(epochs + 1):
+                print(f">>>>>>>>> epoch {epoch} <<<<<<<<<")
+
                 early_stop = False
 
                 if not (skip_first_eval and epoch == 0):
@@ -162,9 +164,9 @@ class Trainer:
                     print(f"result['unique score']: {result['unique score']}")
                     print(f"result['novel score']: {result['novel score']}")
 
-                    if result['valid score'] > 85 and result['novel score'] > 85 and result['unique score'] > 15:
-                        print("early stop!")
-                        early_stop = True
+                    # if result['valid score'] > 85 and result['novel score'] > 85 and result['unique score'] > 15:
+                    #     print("early stop!")
+                    #     early_stop = True
 
                 if epoch < epochs and (not early_stop):
                     last_epoch_start_time = time.time()
@@ -194,7 +196,7 @@ class Trainer:
             def _test_step(model, optimizer, batch_dim, test_batch, start_time, _test_update):
                 model.is_training = False
                 print(f"_test_step, batch_dim: {batch_dim}, is_training: {model.is_training}")
-                self.load(directory, 30)
+                self.load(directory, model.test_epoch)
                 from_start = timedelta(seconds=int((time.time() - start_time)))
                 self.log('End of training ({} epochs) in {}'.format(epochs, from_start))
 
