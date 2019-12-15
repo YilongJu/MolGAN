@@ -104,8 +104,6 @@ venv.bak/
 .mypy_cache/
 *.sdf
 *.csv
-*.smi
-*.sparsedataset
 *.index
 *.index
 *.index
@@ -172,3 +170,5 @@ qm9_5k_bd32_la0.9_do0_nc5_meqed_ns5000_zd32_epc30_se1_gu(128, 256, 512)_du((128,
 log.txt
 log.txt
 log.txt
+data/GDB17_50000000.smi
+data/gdb9_9nodes.sparsedataset
